@@ -24,9 +24,9 @@ function show_clock() {
 }
 
 // 마우스를 올렸을 때 실행되는 함수
-function over(obj) {
-  obj.src = "image/LOG.png"; // 마우스 올렸을 때 바뀔 이미지
-}
+const over = (obj) => {
+  obj.src = "image/LOGO.png";
+};
 
 // 마우스를 뗐을 때 실행되는 함수
 function out(obj) {

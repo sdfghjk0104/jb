@@ -2,11 +2,10 @@ function googleSearch() {
   const input = document.getElementById("search_input").value.trim();
 
   // 1. 공백 검사
-  if (input.length === 0) {
-    alert("검색어를 입력하세요.");
-    return false;
-  }
-
+ const search_message = () => {
+  const c = '검색을 수행합니다';
+  alert(c);
+};
   // 2. 비속어 검사 (예시 5개)
   const bannedWords = ["욕1", "욕2", "비속어1", "비속어2", "나쁜말"];
 
