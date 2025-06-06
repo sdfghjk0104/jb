@@ -164,7 +164,10 @@ const check_input = () => {
         emailInput.value = get_id;
         idsave_check.checked = true;
         }
-        document.addEventListener('DOMContentLoaded', () => {init();});
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuth();
+            init_logined();
+        });
     }
 
 
