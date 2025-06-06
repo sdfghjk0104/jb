@@ -24,7 +24,23 @@
     <div id="divClock" class="clock display-5 text-muted"></div>
     <h1 class="display-4"><div id="Time" class="clock"></div></h1>
 
+    <input class="form-check-input" type="checkbox" id="check_popup" onclick="closePopup();">
+    <label class="form-check-label" for="flexCheckChecked">하루에 한번만 열기</label>
+
+    <button onclick="closePopupForDays(3)">3일간 보지 않기</button>
+
+
     <script src="../Js/popup_close.js"></script>
+
+    <script>
+      function closePopupForDays(days) {
+        const date = new Date();
+        date.setDate(date.getDate() + days);
+        document.cookie = "popupYN=N; expires=" + date.toUTCString() + "; path=/";
+        window.close(); // 팝업창 닫기
+    }
+</script>
+
   </body>
 </html>
 
