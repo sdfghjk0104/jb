@@ -3,7 +3,19 @@ const check_input = () => {
     const emailInput = document.getElementById('typeEmailX');
     const passwordInput = document.getElementById('typePasswordX');
     const idsave_check = document.getElementById('idSaveCheck');
+
+    const payload = {
+        id: emailValue,
+        exp: Math.floor(Date.now() / 1000) + 3600 // 1시간 (3600초)
+    };
+    const jwtToken = generateJWT(payload);
     alert('아이디, 패스워드를 체크합니다');
+
+    console.log('이메일:', emailValue);
+    console.log('비밀번호:', passwordValue);
+    session_set(); // 세션 생성
+    localStorage.setItem('jwt_token', jwtToken);
+    loginForm.submit();
 
     let emailValue = emailInput.value.trim();
     let passwordValue = passwordInput.value.trim();
@@ -77,10 +89,11 @@ const check_input = () => {
     }
 
     // 여기에 세션 생성
-    function session_check() { //세션 검사
-    if (sessionStorage.getItem("Session_Storage_test")) {
+   function session_check() { //세션 검사
+    if (sessionStorage.getItem("Session_Storage_id")) {
         alert("이미 로그인 되었습니다.");
         location.href='../login/index_login.html'; // 로그인된 페이지로 이동
+        }
     }
     if(get_id) {
     id.value = get_id;
@@ -161,7 +174,7 @@ const check_input = () => {
     }
 
   return true; // 통과 시 form submit 됨
-};
+
 const check_xss = (input) => {
   const DOMPurify = window.DOMPurify;
   const sanitizedInput = DOMPurify.sanitize(input);
@@ -172,4 +185,23 @@ const check_xss = (input) => {
   return sanitizedInput;
 };
 
+function session_set() { //세션 저장
+    let session_id = document.querySelector("#typeEmailX"); // DOM 트리에서 ID 검색
+    let session_pass = document.querySelector("#typePasswordX"); // DOM 트리에서 pass 검색
+    if (sessionStorage) {
+        let en_text = encrypt_text(session_pass.value);
+        sessionStorage.setItem("Session_Storage_id", session_id.value);
+        sessionStorage.setItem("Session_Storage_pass", en_text);
+    } else {
+        alert("로컬 스토리지 지원 x");
+    }
+}
+
+function session_get() { //세션 읽기
+    if (sessionStorage) {
+        return sessionStorage.getItem("Session_Storage_pass");
+    } else {
+        alert("세션 스토리지 지원 x");
+    }
+}
 
