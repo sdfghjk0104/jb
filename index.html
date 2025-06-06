@@ -14,9 +14,10 @@
 
         <title>LOL 메인화면</title> 
     </head>
-    <body style="background-color: black;"> 
+    <body style="background-color: black;" onload="pop_up();"> 
         <div style="display: flex; justify-content: center;">
-            <img src="image/LOG.png" width="200" height="80" alt="로고 이미지">
+            <img src="image/LOG.png" width="200" height="80" alt="로고 이미지"
+            onmouseover="over(this)" onmouseout="out(this)">
             <!-- <h3 style="font-size: 24px; font-weight: bold; font-style: italic; color: white; margin-left: 10px;"> -->
                 <!-- `<a href="https://animalia.bio/ko" target="_blank">동물도감</a> -->
              <!-- 기본정보 챔피언 패치노트 새소식 다운로드 (메뉴 작성)</h3> -->
@@ -60,13 +61,15 @@
                 </ul>
                 </li>
                     <!-- Bootstrap 검색창 -->
-                <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="검색어를 입력하세요" aria-label="Search">
-                <button class="btn btn-outline-success" id="search_btn" type="submit">Search</button>
+                <form class="d-flex" role="search" onsubmit="return googleSearch();">
+                <input class="form-control me-2" id="search_input" name="q" type="search" placeholder="키워드 입력" aria-label="Search">
+                <button class="btn btn-outline-success" id="search_btn" type="submit">검색하기</button>
                 </form>
 
-                <script src="js/search.js"></script>
+
+                <script src="Js/search.js"></script>
                 <!-- js 검색창 연결 -->
+                <script src="Js/pop_up.js"></script>
 
             </ul>
             </div>
@@ -138,7 +141,7 @@
             </h3>
         </div>
 
-        
+        <script src="js/data_type.js"></script>
     </body>
 
 </html>
